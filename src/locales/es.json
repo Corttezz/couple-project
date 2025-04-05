@@ -195,8 +195,8 @@
         "description": "Un efecto de fondo con confetti."
       },
       "fireflies": {
-        "name": "Fogos de artifício",
-        "description": "Un efecto de fondo con fogos de artifício."
+        "name": "Vagalumes",
+        "description": "Un efecto de fondo con vagalumes."
       }
       },
       "step1_description": "Elige un nombre para tu página. Se usará en la URL.",
