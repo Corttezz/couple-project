@@ -167,19 +167,44 @@
     "title": "Créer une Page Personnalisée",
     "description": "Complétez les étapes ci-dessous pour créer votre page de souvenirs spéciaux.",
     "form": {
+      "preview_title": "Aperçu",
       "step1_title": "Nom de la Page",
       "step2_title": "Titre",
       "step3_title": "Photos",
       "step4_title": "Message",
       "step5_title": "Compteur",
       "step6_title": "Musique",
-      
+      "step7_title": "Effet de Fond",
+
       "step1_description": "Choisissez un nom pour votre page. Il sera utilisé dans l'URL.",
       "step2_description": "Ajoutez un titre qui apparaîtra en haut de votre page.",
       "step3_description": "Sélectionnez une date qui symbolise le début de quelque chose de spécial.",
       "step4_description": "Écrivez un message personnel ou racontez votre histoire.",
       "step5_description": "Sélectionnez jusqu'à 10 photos pour personnaliser votre page.",
       "step6_description": "Ajoutez une chanson Spotify à jouer sur votre page.",
+      "step7_description": "Sélectionnez un effet de fond pour votre page.",
+      "background_effects": {
+        "hearts": {
+          "name": "Cœurs",
+          "description": "Un effet de fond avec des cœurs."
+        },
+        "stars": {
+          "name": "Étoiles",
+          "description": "Un effet de fond avec des étoiles."
+        },
+        "bubbles": {
+          "name": "Bulles",
+          "description": "Un effet de fond avec des bulles."
+        },
+        "confetti": {
+          "name": "Confetti",
+          "description": "Un effet de fond avec du confetti."
+        },
+        "fireflies": {
+          "name": "Feux d'artifice",
+          "description": "Un effet de fond avec des feux d'artifice."
+        }
+      },
       
       "page_name_label": "Nom de la page",
       "page_name_placeholder": "Ex: Gabriel-et-Clara ou Joyeux-Anniversaire",
@@ -216,7 +241,33 @@
       "message": "Message",
       "photos": "Photos",
       "spotify": "Musique",
-      "days": "jours"
+      "days": "jours",
+      "sample_title": "Notre Amour",
+      "sample_message": "Voici un message spécial pour toi... ❤️",
+      "your_page_name": "votre-nom-de-page"
+    },
+    "time": {
+      "year_one": "an",
+      "year_other": "ans",
+      "month_one": "mois",
+      "month_other": "mois",
+      "day_one": "jour",
+      "day_other": "jours",
+      "hour_one": "heure",
+      "hour_other": "heures",
+      "minute_one": "minute",
+      "minute_other": "minutes",
+      "second_one": "seconde",
+      "second_other": "secondes"
+    },
+    "dateTexts": {
+      "love_since": "Je t'aime depuis",
+      "together_since": "Je suis avec toi depuis",
+      "dating_since": "Nous sortons ensemble depuis",
+      "married_since": "Mariés depuis",
+      "friends_since": "Amis depuis",
+      "first_kiss": "Notre premier baiser était le",
+      "first_date": "Notre premier rendez-vous était le"
     }
   }
 }

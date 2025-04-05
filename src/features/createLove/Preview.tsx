@@ -72,11 +72,21 @@ export const Preview = ({ formData }: { formData: FormData }) => {
   
   // Verificar se há fotos para exibir
   const hasPhotos = formData.photos.length > 0;
-  const photoUrl = hasPhotos ? URL.createObjectURL(formData.photos[0]) : null;
+
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+
+  useEffect(() => {
+    if (formData.photos.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % formData.photos.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [formData.photos]);
 
   // Calcular dias desde a data inicial (se existir)
-  const daysCount = formData.startDate 
-    ? Math.floor((new Date().getTime() - formData.startDate.getTime()) / (1000 * 60 * 60 * 24))
+  const daysCount = formData.startDate.date 
+    ? Math.floor((new Date().getTime() - formData.startDate.date.getTime()) / (1000 * 60 * 60 * 24))
     : 0;
 
   return (
@@ -95,11 +105,11 @@ export const Preview = ({ formData }: { formData: FormData }) => {
         <div className="relative z-10 h-full flex flex-col">
           {/* Cabeçalho com foto (se houver) */}
           <div className="h-1/2 relative overflow-hidden">
-            {photoUrl ? (
+            {hasPhotos ? (
               <div className="absolute inset-0">
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
                 <img
-                  src={photoUrl}
+                  src={URL.createObjectURL(formData.photos[currentPhotoIndex])}
                   alt=""
                   className="w-full h-full object-cover"
                 />
@@ -144,22 +154,15 @@ export const Preview = ({ formData }: { formData: FormData }) => {
       </div>
       
       {/* Miniaturas das fotos */}
-      {hasPhotos && formData.photos.length > 1 && (
-        <div className="bg-card p-3 border-t border-border flex gap-2 overflow-x-auto">
-          {formData.photos.slice(0, 5).map((photo, index) => (
-            <div key={index} className="w-12 h-12 rounded-md overflow-hidden flex-shrink-0">
-              <img
-                src={URL.createObjectURL(photo)}
-                alt=""
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-          {formData.photos.length > 5 && (
-            <div className="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center text-primary text-xs">
-              +{formData.photos.length - 5}
-            </div>
-          )}
+      {hasPhotos && (
+        <div className="bg-card p-3 border-t border-border flex justify-center">
+          <div className="w-40 h-40 rounded-md overflow-hidden">
+            <img
+              src={URL.createObjectURL(formData.photos[currentPhotoIndex])}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       )}
     </div>

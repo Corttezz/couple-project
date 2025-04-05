@@ -295,16 +295,17 @@ export const BackgroundEffectStep = ({
   onPrev: () => void;
 }) => {
   const t = useTranslations('CreateLove.form');
+  const effectsT = useTranslations('CreateLove.form.background_effects');
 
   return (
     <div className="space-y-10">
       <div>
-        <h2 className="text-2xl font-bold mb-3">{t('step6_title')}</h2>
-        <p className="text-muted-foreground mb-6 text-lg">{t('step6_description')}</p>
+        <h2 className="text-2xl font-bold mb-3">{effectsT('title')}</h2>
+        <p className="text-muted-foreground mb-6 text-lg">{effectsT('description')}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {(Object.entries(backgroundEffects) as [BackgroundEffect, typeof backgroundEffects.hearts][]).map(([key, effect]) => (
+        {(Object.entries(backgroundEffects) as [BackgroundEffect, typeof backgroundEffects.hearts][]).map(([key]) => (
           <motion.div
             key={key}
             whileHover={{ scale: 1.02 }}
@@ -318,24 +319,27 @@ export const BackgroundEffectStep = ({
               <EffectPreview effect={key} />
             </div>
             <div className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-black/80 to-transparent">
-              <h3 className="text-xl font-semibold text-white mb-1">{effect.name}</h3>
-              <p className="text-base text-gray-200">{effect.description}</p>
+              <h3 className="text-xl font-semibold text-white mb-1">
+                {effectsT(`${key}.name`)}
+              </h3>
+              <p className="text-base text-gray-200">
+                {effectsT(`${key}.description`)}
+              </p>
             </div>
           </motion.div>
         ))}
       </div>
 
-      <div className="flex justify-between mt-8">
+      <div className="flex justify-between mt-6">
         <button
           onClick={onPrev}
-          className="border border-input px-6 py-3 rounded-md text-base"
+          className="border border-input px-4 py-2 rounded-md"
         >
           {t('prev_button')}
         </button>
         <button
           onClick={onNext}
-          disabled={!value}
-          className="bg-primary text-primary-foreground px-6 py-3 rounded-md text-base disabled:opacity-50"
+          className="bg-primary text-primary-foreground px-4 py-2 rounded-md"
         >
           {t('next_button')}
         </button>

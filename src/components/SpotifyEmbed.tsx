@@ -24,7 +24,7 @@ export function SpotifyEmbed({ url }: { url: string }) {
   if (!embedUrl) return null;
 
   return (
-    <div className="w-full aspect-[16/5] rounded-lg overflow-hidden">
+    <div className="w-full aspect-[16/5.5] rounded-lg overflow-hidden pt-2">
       <iframe
         src={embedUrl}
         width="100%"

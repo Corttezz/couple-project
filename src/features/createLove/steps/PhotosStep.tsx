@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const PhotosStep = ({ 
   value, 
@@ -14,7 +14,16 @@ export const PhotosStep = ({
 }) => {
   const t = useTranslations('CreateLove.form');
   const [dragActive, setDragActive] = useState(false);
-  
+  const [mainPhoto, setMainPhoto] = useState<File | null>(null);
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % value.length);
+    }, 5000); // Change photo every 5 seconds
+    return () => clearInterval(interval);
+  }, [value]);
+
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -50,6 +59,10 @@ export const PhotosStep = ({
     const newPhotos = [...value];
     newPhotos.splice(index, 1);
     onChange(newPhotos);
+  };
+
+  const selectMainPhoto = (file: File) => {
+    setMainPhoto(file);
   };
   
   return (
@@ -110,6 +123,7 @@ export const PhotosStep = ({
                   src={URL.createObjectURL(file)} 
                   alt={`Uploaded ${index + 1}`}
                   className="w-full h-24 object-cover rounded-md"
+                  onClick={() => selectMainPhoto(file)}
                 />
                 <button
                   onClick={() => removePhoto(index)}

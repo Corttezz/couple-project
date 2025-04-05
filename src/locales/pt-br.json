@@ -167,20 +167,43 @@
     "title": "Criar Página Personalizada",
     "description": "Complete as etapas abaixo para criar sua página de memórias especiais.",
     "form": {
+      "preview_title": "Pré-visualização",
       "step1_title": "Nome da Página",
       "step2_title": "Título",
       "step3_title": "Fotos",
       "step4_title": "Mensagem",
       "step5_title": "Contador",
       "step6_title": "Música",
-      
+      "step7_title": "Efeito de Fundo",
       "step1_description": "Escolha um nome para sua página. Este será usado na URL.",
       "step2_description": "Adicione um título para sua página que aparecerá no topo.",
       "step3_description": "Selecione uma data que simbolize o início de algo especial.",
       "step4_description": "Escreva uma mensagem pessoal ou conte sua história.",
       "step5_description": "Selecione até 10 fotos para personalizar sua página.",
       "step6_description": "Adicione uma música do Spotify para tocar na sua página.",
-      
+      "step7_description": "Selecione um efeito de fundo para sua página.",
+      "background_effects": {
+        "hearts": {
+          "name": "Corações",
+          "description": "Um efeito de fundo com corações."
+        },
+        "stars": {
+          "name": "Estrelas",
+          "description": "Um efeito de fundo com estrelas."
+        },
+        "bubbles": {
+          "name": "Bubbles",
+          "description": "Um efeito de fundo com bolhas."
+        },
+        "confetti": {
+          "name": "Confetti",
+          "description": "Um efeito de fundo com confetti."
+        },
+        "fireflies": {
+          "name": "Fogos de artifício",
+          "description": "Um efeito de fundo com fogos de artifício."
+        }
+      },
       "page_name_label": "Nome da página",
       "page_name_placeholder": "Ex: Gabriel-e-Clara ou Feliz-Aniversario",
       "page_name_helper": "Use somente letras, números e hífens. Sem espaços.",
@@ -216,7 +239,33 @@
       "message": "Mensagem",
       "photos": "Fotos",
       "spotify": "Música",
-      "days": "dias"
+      "days": "dias",
+      "sample_title": "Nosso Amor",
+      "sample_message": "Aqui está uma mensagem especial para você... ❤️",
+      "your_page_name": "seu-nome-da-pagina"
+    },
+    "time": {
+      "year_one": "an",
+      "year_other": "ans",
+      "month_one": "mois",
+      "month_other": "mois",
+      "day_one": "jour",
+      "day_other": "jours",
+      "hour_one": "heure",
+      "hour_other": "heures",
+      "minute_one": "minute",
+      "minute_other": "minutes",
+      "second_one": "seconde",
+      "second_other": "secondes"
+    },
+    "dateTexts": {
+      "love_since": "Je t'aime depuis",
+      "together_since": "Je suis avec toi depuis",
+      "dating_since": "Nous sortons ensemble depuis",
+      "married_since": "Mariés depuis",
+      "friends_since": "Amis depuis",
+      "first_kiss": "Notre premier baiser était le",
+      "first_date": "Notre premier rendez-vous était le"
     }
   }
 }

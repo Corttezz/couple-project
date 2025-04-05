@@ -17,7 +17,10 @@ import { LivePreview } from './LivePreview';
 export type FormData = {
   pageName: string;
   pageTitle: string;
-  startDate: Date | null;
+  startDate: {
+    date: Date | null;
+    textType: string;
+  };
   message: string;
   photos: File[];
   backgroundEffect: ParticleEffect;
@@ -32,10 +35,13 @@ export const CreateLoveForm = () => {
   const [formData, setFormData] = useState<FormData>({
     pageName: '',
     pageTitle: '',
-    startDate: null,
+    startDate: {
+      date: null,
+      textType: ''
+    },
     message: '',
     photos: [],
-    backgroundEffect: 'hearts', // Valor padrão
+    backgroundEffect: 'hearts',
     spotifyLink: ''
   });
 

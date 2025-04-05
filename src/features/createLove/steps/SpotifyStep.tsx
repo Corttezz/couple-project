@@ -37,7 +37,10 @@ export const SpotifyStep = ({
     // Criar um objeto com os dados formatados
     const pageData = {
       pageTitle: formData.pageTitle,
-      startDate: formData.startDate?.toISOString(),
+      startDate: {
+        date: formData.startDate.date?.toISOString(),
+        textType: formData.startDate.textType
+      },
       message: formData.message,
       photos: photoUrls,
       spotifyUrl: formData.spotifyLink,

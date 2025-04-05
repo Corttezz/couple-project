@@ -367,7 +367,10 @@ const EffectBackground = ({ effect }) => {
 
 export const LivePreview = ({ formData }: { formData: FormData }) => {
   const t = useTranslations('CreateLove.preview');
+  const timeT = useTranslations('CreateLove.time');
+  const dateT = useTranslations('CreateLove.dateTexts');
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [timeElapsed, setTimeElapsed] = useState({
     years: 0,
     months: 0,
@@ -390,10 +393,10 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
   
   // Calcular o tempo decorrido
   useEffect(() => {
-    if (!formData.startDate) return;
+    if (!formData.startDate.date) return;
 
     const updateTime = () => {
-      const start = formData.startDate as Date;
+      const start = formData.startDate.date as Date;
       const now = new Date();
       const diff = now.getTime() - start.getTime();
 
@@ -417,7 +420,7 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
-  }, [formData.startDate]);
+  }, [formData.startDate.date]);
 
   // Efeito para forçar a recriação do efeito de partículas
   const [key, setKey] = useState(0);
@@ -426,148 +429,197 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
     setKey(prev => prev + 1);
   }, [formData.backgroundEffect]);
   
+  // Alternância de fotos
+  useEffect(() => {
+    if (formData.photos.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % formData.photos.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [formData.photos]);
+  
   // Converter fotos em URLs
   const photoUrls = formData.photos.map(photo => URL.createObjectURL(photo));
   
+  const formatTimeElapsed = (timeElapsed) => {
+    const parts = [];
+    
+    if (timeElapsed.years > 0) {
+      parts.push(`${timeElapsed.years} ${timeT(timeElapsed.years === 1 ? 'year_one' : 'year_other')}`);
+    }
+    if (timeElapsed.months > 0) {
+      parts.push(`${timeElapsed.months} ${timeT(timeElapsed.months === 1 ? 'month_one' : 'month_other')}`);
+    }
+    if (timeElapsed.days > 0) {
+      parts.push(`${timeElapsed.days} ${timeT(timeElapsed.days === 1 ? 'day_one' : 'day_other')}`);
+    }
+    if (timeElapsed.hours > 0) {
+      parts.push(`${timeElapsed.hours} ${timeT(timeElapsed.hours === 1 ? 'hour_one' : 'hour_other')}`);
+    }
+    if (timeElapsed.minutes > 0) {
+      parts.push(`${timeElapsed.minutes} ${timeT(timeElapsed.minutes === 1 ? 'minute_one' : 'minute_other')}`);
+    }
+    if (timeElapsed.seconds > 0) {
+      parts.push(`${timeElapsed.seconds} ${timeT(timeElapsed.seconds === 1 ? 'second_one' : 'second_other')}`);
+    }
+    
+    return parts;
+  };
+
+  const getDateText = (textType: string) => {
+    return dateT(textType);
+  };
+
   return (
-    <div 
-      ref={containerRef}
-      className="h-full bg-black text-white overflow-y-auto overflow-x-hidden relative"
-      style={{ isolation: 'isolate' }}
-    >
-      <div className="min-h-full">
-        {/* Efeito de fundo */}
-        <div 
-          className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden pointer-events-none"
-          key={`effect-${formData.backgroundEffect}-${key}`} 
-          style={{ 
-            position: 'absolute',
-            height: '100%',
-            width: '100%',
-            zIndex: 0
-          }}
-        >
-          <EffectBackground effect={formData.backgroundEffect} />
+    <div className="flex flex-col h-full">
+      {/* Barra de endereço simulada */}
+      <div className="bg-[#2D2D2D] p-2 flex items-center gap-2 rounded-t-lg">
+        <div className="flex gap-1.5">
+          <div className="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+          <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+          <div className="w-3 h-3 rounded-full bg-[#27C93F]"></div>
         </div>
-        
-        <div className="relative z-10">
-          {/* Hero Section */}
-          <div className="h-[40vh] min-h-[200px] relative overflow-hidden">
-            {photoUrls[0] ? (
-              <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
-                <img
-                  src={photoUrls[0]}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ) : (
-              <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-primary/20 to-black" />
-            )}
-            
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
-              <h1 className="text-xl md:text-2xl font-bold text-white mb-4">
-                {formData.pageTitle || t('sample_title')}
-              </h1>
-              
-              {formData.startDate && (
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  {Object.entries(timeElapsed)
-                    .filter(([key]) => ['days', 'hours', 'minutes'].includes(key))
-                    .map(([key, value]) => (
-                      <div
-                        key={key}
-                        className="bg-white/10 backdrop-blur-sm rounded-lg px-3 py-1"
-                      >
-                        <div className="text-lg font-bold text-primary">{value}</div>
-                        <div className="text-xs text-gray-300 capitalize">{key}</div>
-                      </div>
-                    ))}
-                </div>
-              )}
-            </div>
+        <div className="flex-1 bg-[#1D1D1D] rounded-md px-3 py-1.5 text-sm text-gray-300 text-center">
+          withloove.com/{formData.pageName || t('your_page_name')}
+        </div>
+      </div>
+
+      {/* Conteúdo com scroll */}
+      <div 
+        ref={containerRef}
+        className="flex-1 bg-black text-white overflow-y-auto overflow-x-hidden relative"
+        style={{ isolation: 'isolate' }}
+      >
+        <div className="min-h-full">
+          {/* Efeito de fundo */}
+          <div 
+            className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden pointer-events-none"
+            key={`effect-${formData.backgroundEffect}-${key}`} 
+            style={{ 
+              position: 'absolute',
+              height: '100%',
+              width: '100%',
+              zIndex: 0
+            }}
+          >
+            <EffectBackground effect={formData.backgroundEffect} />
           </div>
-
-          {/* Mensagem */}
-          <section className="py-8 px-4">
-            <div className="max-w-full mx-auto">
-              <div className="bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-lg p-4 rounded-xl">
-                <MessageCircleHeart className="w-6 h-6 text-primary mb-2" />
-                <p className="text-sm text-gray-200 break-words whitespace-pre-wrap">
-                  {formData.message || t('sample_message')}
-                </p>
+          
+          <div className="relative z-10">
+            {/* Hero Section */}
+            <div className="h-[40vh] min-h-[200px] relative overflow-hidden">
+              {photoUrls[0] ? (
+                <div className="absolute inset-0">
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
+                  <img
+                    src={photoUrls[0]}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-primary/20 to-black" />
+              )}
+              
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                <h1 className="text-xl md:text-2xl font-bold text-white mb-4">
+                  {formData.pageTitle || t('sample_title')}
+                </h1>
+                
+                {formData.startDate.date && formData.startDate.textType && (
+                  <div className="text-center mb-4">
+                    <p className="text-lg text-gray-300 mb-2">
+                      {getDateText(formData.startDate.textType)}
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-center">
+                      {formatTimeElapsed(timeElapsed).map((text, index) => (
+                        <div
+                          key={index}
+                          className="bg-white/10 backdrop-blur-sm rounded-lg px-3 py-1"
+                        >
+                          <div className="text-sm md:text-lg font-bold text-primary">{text}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-          </section>
 
-          {/* Galeria de Fotos */}
-          {photoUrls.length > 0 && (
+            {/* Spotify - Mover para cá e aumentar o tamanho */}
+            {formData.spotifyLink && isValidSpotifyUrl(formData.spotifyLink) && (
+              <section className="py-8 px-4">
+                <div className="max-w-2xl mx-auto"> {/* Aumentado para max-w-2xl */}
+                  <div className="bg-white/5 p-4 rounded-xl backdrop-blur-sm"> {/* Aumentado o padding */}
+                    <SpotifyEmbed url={formData.spotifyLink} />
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Mensagem */}
             <section className="py-8 px-4">
-              <div className="grid grid-cols-2 gap-2">
-                {photoUrls.map((photo, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.05 }}
-                    className="aspect-square rounded-md overflow-hidden cursor-pointer"
-                    onClick={() => setSelectedPhoto(photo)}
-                  >
+              <div className="max-w-full mx-auto">
+                <div className="bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-lg p-4 rounded-xl">
+                  <MessageCircleHeart className="w-6 h-6 text-primary mb-2" />
+                  <p className="text-sm text-gray-200 break-words whitespace-pre-wrap">
+                    {formData.message || t('sample_message')}
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* Galeria de Fotos */}
+            {photoUrls.length > 0 && (
+              <section className="py-8 px-4">
+                <div className="flex justify-center">
+                  <div className="w-48 h-48 rounded-md overflow-hidden">
                     <img
-                      src={photo}
+                      src={photoUrls[currentPhotoIndex]}
                       alt=""
                       className="w-full h-full object-cover"
                     />
-                  </motion.div>
-                ))}
-              </div>
-            </section>
-          )}
+                  </div>
+                </div>
+              </section>
+            )}
 
-          {/* Spotify - Agora com iframe real */}
-          {formData.spotifyLink && isValidSpotifyUrl(formData.spotifyLink) && (
-            <section className="py-8 px-4">
-              <div className="max-w-xl mx-auto">
-                <div className="bg-white/5 p-2 rounded-xl backdrop-blur-sm">
-                  <SpotifyEmbed url={formData.spotifyLink} />
+            {/* Alternativa visual quando o link não é válido mas existe */}
+            {formData.spotifyLink && !isValidSpotifyUrl(formData.spotifyLink) && (
+              <section className="py-8 px-4">
+                <div className="max-w-xl mx-auto">
+                  <div className="bg-white/10 rounded-xl p-4 flex items-center gap-3">
+                    <Music className="text-primary" />
+                    <div className="text-sm truncate">{formData.spotifyLink}</div>
+                  </div>
                 </div>
-              </div>
-            </section>
-          )}
-          
-          {/* Alternativa visual quando o link não é válido mas existe */}
-          {formData.spotifyLink && !isValidSpotifyUrl(formData.spotifyLink) && (
-            <section className="py-8 px-4">
-              <div className="max-w-xl mx-auto">
-                <div className="bg-white/10 rounded-xl p-4 flex items-center gap-3">
-                  <Music className="text-primary" />
-                  <div className="text-sm truncate">{formData.spotifyLink}</div>
-                </div>
-              </div>
-            </section>
-          )}
+              </section>
+            )}
+          </div>
+
+          {/* Modal de Foto */}
+          <AnimatePresence>
+            {selectedPhoto && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedPhoto(null)}
+                className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+              >
+                <motion.img
+                  initial={{ scale: 0.5 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0.5 }}
+                  src={selectedPhoto}
+                  alt=""
+                  className="max-w-full max-h-[90vh] object-contain rounded-lg"
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-
-        {/* Modal de Foto */}
-        <AnimatePresence>
-          {selectedPhoto && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedPhoto(null)}
-              className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-            >
-              <motion.img
-                initial={{ scale: 0.5 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.5 }}
-                src={selectedPhoto}
-                alt=""
-                className="max-w-full max-h-[90vh] object-contain rounded-lg"
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </div>
   );
