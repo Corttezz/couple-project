@@ -169,9 +169,9 @@
     "form": {
       "step1_title": "Nom de la Page",
       "step2_title": "Titre",
-      "step3_title": "Compteur",
+      "step3_title": "Photos",
       "step4_title": "Message",
-      "step5_title": "Photos",
+      "step5_title": "Compteur",
       "step6_title": "Musique",
       
       "step1_description": "Choisissez un nom pour votre page. Il sera utilisé dans l'URL.",

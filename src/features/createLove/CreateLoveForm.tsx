@@ -76,9 +76,9 @@ export const CreateLoveForm = () => {
         );
       case 3:
         return (
-          <DateCounterStep 
-            value={formData.startDate}
-            onChange={(value) => updateFormData('startDate', value)}
+          <PhotosStep 
+            value={formData.photos}
+            onChange={(value) => updateFormData('photos', value)}
             onNext={nextStep}
             onPrev={prevStep}
           />
@@ -94,9 +94,9 @@ export const CreateLoveForm = () => {
         );
       case 5:
         return (
-          <PhotosStep 
-            value={formData.photos}
-            onChange={(value) => updateFormData('photos', value)}
+          <DateCounterStep 
+            value={formData.startDate}
+            onChange={(value) => updateFormData('startDate', value)}
             onNext={nextStep}
             onPrev={prevStep}
           />
