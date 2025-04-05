@@ -82,14 +82,23 @@ export const CreateLoveForm = () => {
         );
       case 3:
         return (
+          <BackgroundEffectStep 
+            value={formData.backgroundEffect}
+            onChange={(value) => updateFormData('backgroundEffect', value)}
+            onNext={nextStep}
+            onPrev={prevStep}
+          />
+        );
+      case 4:
+        return (
           <PhotosStep 
             value={formData.photos}
             onChange={(value) => updateFormData('photos', value)}
             onNext={nextStep}
             onPrev={prevStep}
           />
-        );
-      case 4:
+        );;
+      case 5:
         return (
           <MessageStep 
             value={formData.message}
@@ -98,20 +107,11 @@ export const CreateLoveForm = () => {
             onPrev={prevStep}
           />
         );
-      case 5:
+      case 6:
         return (
           <DateCounterStep 
             value={formData.startDate}
             onChange={(value) => updateFormData('startDate', value)}
-            onNext={nextStep}
-            onPrev={prevStep}
-          />
-        );
-      case 6:
-        return (
-          <BackgroundEffectStep 
-            value={formData.backgroundEffect}
-            onChange={(value) => updateFormData('backgroundEffect', value)}
             onNext={nextStep}
             onPrev={prevStep}
           />
@@ -141,11 +141,11 @@ export const CreateLoveForm = () => {
           stepTitles={[
             t('step1_title'),
             t('step2_title'),
+            t('step7_title'),
             t('step3_title'),
             t('step4_title'),
             t('step5_title'),
-            t('step6_title'),
-            t('step7_title')
+            t('step6_title')
           ]}
         />
         

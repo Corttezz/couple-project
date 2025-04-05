@@ -176,6 +176,8 @@
       "step6_title": "Música",
       "step7_title": "Efecto de fondo",
     "background_effects": {
+      "title": "Efectos de fondo",
+      "description": "Selecciona un efecto de fondo para tu página.",
       "hearts": {
         "name": "Corações",
         "description": "Un efecto de fondo con corazones."

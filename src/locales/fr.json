@@ -184,6 +184,8 @@
       "step6_description": "Ajoutez une chanson Spotify à jouer sur votre page.",
       "step7_description": "Sélectionnez un effet de fond pour votre page.",
       "background_effects": {
+        "title": "Effets de fond",
+        "description": "Sélectionnez un effet de fond pour votre page.",
         "hearts": {
           "name": "Cœurs",
           "description": "Un effet de fond avec des cœurs."

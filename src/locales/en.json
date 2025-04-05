@@ -176,6 +176,8 @@
       "step6_title": "Music",
       "step7_title": "Background Effect",
       "background_effects": {
+        "title": "Background Effects",
+        "description": "Select a background effect for your page.",
         "hearts": {
           "name": "Hearts",
           "description": "A heart-shaped background effect."

@@ -183,6 +183,8 @@
       "step6_description": "Adicione uma música do Spotify para tocar na sua página.",
       "step7_description": "Selecione um efeito de fundo para sua página.",
       "background_effects": {
+        "title": "Efeitos de Fundo",
+        "description": "Selecione um efeito de fundo para sua página.",
         "hearts": {
           "name": "Corações",
           "description": "Um efeito de fundo com corações."
@@ -245,27 +247,27 @@
       "your_page_name": "seu-nome-da-pagina"
     },
     "time": {
-      "year_one": "an",
-      "year_other": "ans",
-      "month_one": "mois",
-      "month_other": "mois",
-      "day_one": "jour",
-      "day_other": "jours",
-      "hour_one": "heure",
-      "hour_other": "heures",
-      "minute_one": "minute",
-      "minute_other": "minutes",
-      "second_one": "seconde",
-      "second_other": "secondes"
+      "year_one": "ano",
+      "year_other": "anos",
+      "month_one": "mês",
+      "month_other": "meses",
+      "day_one": "dia",
+      "day_other": "dias",
+      "hour_one": "hora",
+      "hour_other": "horas",
+      "minute_one": "minuto",
+      "minute_other": "minutos",
+      "second_one": "segundo",
+      "second_other": "segundos"
     },
     "dateTexts": {
-      "love_since": "Je t'aime depuis",
-      "together_since": "Je suis avec toi depuis",
-      "dating_since": "Nous sortons ensemble depuis",
-      "married_since": "Mariés depuis",
-      "friends_since": "Amis depuis",
-      "first_kiss": "Notre premier baiser était le",
-      "first_date": "Notre premier rendez-vous était le"
+      "love_since": "Te amo desde",
+      "together_since": "Estamos juntos desde",
+      "dating_since": "Estamos saindo desde",
+      "married_since": "Estamos casados desde",
+      "friends_since": "Somos amigos desde",
+      "first_kiss": "Nos beijamos pela primeira vez em",
+      "first_date": "Nos vimos pela primeira vez em"
     }
   }
 }
