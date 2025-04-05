@@ -1,0 +1,222 @@
+{
+  "Index": {
+    "meta_title": "SaaS Template - La plantilla perfecta para construir y escalar tu negocio con facilidad.",
+    "meta_description": "Una plantilla gratuita y de código abierto para la landing page de tu negocio SaaS, construida con React, TypeScript, Shadcn UI y Tailwind CSS."
+  },
+  "Navbar": {
+    "sign_in": "Iniciar sesión",
+    "sign_up": "Registrarse",
+    "product": "Producto",
+    "docs": "Documentación",
+    "blog": "Blog",
+    "community": "Comunidad",
+    "company": "Empresa"
+  },
+  "Hero": {
+    "follow_twitter": "Sigue a @Ixartz en Twitter",
+    "title": "La <important>plantilla SaaS</important> perfecta para construir y escalar tu negocio con facilidad.",
+    "description": "Una plantilla gratuita y de código abierto para la landing page de tu negocio SaaS, construida con React, TypeScript, Shadcn UI y Tailwind CSS.",
+    "primary_button": "Empezar",
+    "secondary_button": "Dar estrella en GitHub"
+  },
+  "Sponsors": {
+    "title": "Patrocinado por"
+  },
+  "Features": {
+    "section_subtitle": "Características",
+    "section_title": "Libera todo el potencial de la plantilla SaaS",
+    "section_description": "Una plantilla gratuita y de código abierto para la landing page de tu negocio SaaS, construida con React, TypeScript, Shadcn UI y Tailwind CSS.",
+    "feature1_title": "Node.js",
+    "feature2_title": "React",
+    "feature3_title": "Tailwind CSS",
+    "feature4_title": "TypeScript",
+    "feature5_title": "Shadcn UI",
+    "feature6_title": "ESLint",
+    "feature_description": "Una plantilla gratuita y de código abierto para la landing page de tu negocio SaaS, construida con React, TypeScript, Shadcn UI y Tailwind CSS."
+  },
+  "Pricing": {
+    "section_subtitle": "Características",
+    "section_title": "Libera todo el potencial de la plantilla SaaS",
+    "section_description": "Una plantilla gratuita y de código abierto para la landing page de tu negocio SaaS, construida con React, TypeScript, Shadcn UI y Tailwind CSS.",
+    "button_text": "Empezar"
+  },
+  "PricingPlan": {
+    "free_plan_name": "Gratis",
+    "premium_plan_name": "Premium",
+    "enterprise_plan_name": "Enterprise",
+    "free_plan_description": "Para individuos",
+    "premium_plan_description": "Para pequeños equipos",
+    "enterprise_plan_description": "Para líderes del sector",
+    "feature_team_member": "{number} miembros del equipo",
+    "feature_website": "{number} sitios web",
+    "feature_storage": "{number} GB de almacenamiento",
+    "feature_transfer": "{number} TB de transferencia",
+    "feature_email_support": "Soporte por correo",
+    "plan_interval_month": "mes",
+    "plan_interval_year": "año",
+    "next_renew_date": "Tu suscripción se renovará el {date}"
+  },
+  "FAQ": {
+    "question": "¿Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam enim dui, id consequat turpis ullamcorper ac. Mauris id quam dolor. Nullam eu egestas turpis. Proin risus elit, sollicitudin in mi a, accumsan euismod turpis. In euismod mi sed diam tristique hendrerit."
+  },
+  "CTA": {
+    "title": "¿Estás listo?",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "button_text": "Dar estrella en GitHub"
+  },
+  "Footer": {
+    "product": "Producto",
+    "docs": "Documentación",
+    "blog": "Blog",
+    "community": "Comunidad",
+    "company": "Empresa",
+    "terms_of_service": "Términos de servicio",
+    "privacy_policy": "Política de privacidad",
+    "designed_by": "Diseñado por <author></author>."
+  },
+  "ProtectFallback": {
+    "not_enough_permission": "No tienes permiso para realizar esta acción"
+  },
+  "SignIn": {
+    "meta_title": "Iniciar sesión",
+    "meta_description": "Inicia sesión fácilmente en tu cuenta con nuestro proceso amigable."
+  },
+  "SignUp": {
+    "meta_title": "Registrarse",
+    "meta_description": "Crea tu cuenta sin esfuerzo con nuestro proceso de registro intuitivo."
+  },
+  "DashboardLayout": {
+    "home": "Inicio",
+    "todos": "Tareas",
+    "members": "Miembros",
+    "billing": "Facturación",
+    "settings": "Configuraciones"
+  },
+  "Dashboard": {
+    "meta_title": "Panel de SaaS Template",
+    "meta_description": "Una plantilla gratuita y de código abierto para la landing page de tu negocio SaaS, construida con Next.js, TypeScript, Shadcn UI y Tailwind CSS."
+  },
+  "DashboardIndex": {
+    "title_bar": "Panel",
+    "title_bar_description": "Bienvenido a tu panel",
+    "message_state_title": "Vamos a empezar",
+    "message_state_description": "Puedes personalizar esta página editando el archivo en <code>dashboard/page.tsx</code>",
+    "message_state_button": "Dar estrella en GitHub",
+    "message_state_alternative": "¿Quieres más características con la misma tecnología? Prueba <url></url>."
+  },
+  "UserProfile": {
+    "title_bar": "Perfil de Usuario",
+    "title_bar_description": "Ver y administrar tu perfil de usuario"
+  },
+  "OrganizationProfile": {
+    "title_bar": "Gestión de la Organización",
+    "title_bar_description": "Administra tu organización"
+  },
+  "Billing": {
+    "title_bar": "Facturación",
+    "title_bar_description": "Administra tu facturación y suscripción",
+    "current_section_title": "Plan Actual",
+    "current_section_description": "Ajusta tu plan de pago para satisfacer tus necesidades",
+    "manage_subscription_button": "Gestionar Suscripción"
+  },
+  "BillingOptions": {
+    "current_plan": "Plan Actual",
+    "upgrade_plan": "Empezar"
+  },
+  "CheckoutConfirmation": {
+    "title_bar": "Confirmación de Pago",
+    "message_state_title": "Pago exitoso",
+    "message_state_description": "Tu pago se ha procesado correctamente. ¡Gracias por tu compra!",
+    "message_state_button": "Volver a Facturación"
+  },
+  "DataTable": {
+    "no_results": "Sin resultados."
+  },
+  "Todos": {
+    "title_bar": "Lista de Tareas",
+    "title_bar_description": "Ver y administrar tu lista de tareas",
+    "add_todo_button": "Nueva tarea"
+  },
+  "TodoTableColumns": {
+    "open_menu": "Abrir menú",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "title_header": "Título",
+    "message_header": "Mensaje",
+    "created_at_header": "Creado el"
+  },
+  "AddTodo": {
+    "title_bar": "Agregar Tarea",
+    "add_todo_section_title": "Crear una nueva tarea",
+    "add_todo_section_description": "Rellena el formulario abajo para crear una nueva tarea"
+  },
+  "EditTodo": {
+    "title_bar": "Editar Tarea",
+    "edit_todo_section_title": "Modificar tarea",
+    "edit_todo_section_description": "Rellena el formulario abajo para editar la tarea"
+  },
+  "TodoForm": {
+    "title_label": "Título",
+    "title_description": "Introduce un título descriptivo para tu tarea.",
+    "message_title": "Mensaje",
+    "message_description": "Introduce un mensaje detallado para tu tarea.",
+    "submit_button": "Enviar"
+  },
+  "CreateLove": {
+    "title": "Crear Página Personalizada",
+    "description": "Completa los pasos a continuación para crear tu página de recuerdos especiales.",
+    "form": {
+      "step1_title": "Nombre de la Página",
+      "step2_title": "Título",
+      "step3_title": "Contador",
+      "step4_title": "Mensaje",
+      "step5_title": "Fotos",
+      "step6_title": "Música",
+      
+      "step1_description": "Elige un nombre para tu página. Se usará en la URL.",
+      "step2_description": "Agrega un título que aparecerá en la parte superior de tu página.",
+      "step3_description": "Selecciona una fecha que simbolice el comienzo de algo especial.",
+      "step4_description": "Escribe un mensaje personal o cuenta tu historia.",
+      "step5_description": "Selecciona hasta 10 fotos para personalizar tu página.",
+      "step6_description": "Agrega una canción de Spotify para reproducir en tu página.",
+      
+      "page_name_label": "Nombre de la página",
+      "page_name_placeholder": "Ej: Gabriel-y-Clara o Feliz-Cumpleanos",
+      "page_name_helper": "Usa solo letras, números y guiones. Sin espacios.",
+      
+      "page_title_label": "Título de la página",
+      "page_title_placeholder": "Ej: Te amo desde hace: o Nuestros recuerdos",
+      "page_title_helper": "Este título aparecerá en la parte superior de tu página.",
+      
+      "date_counter_label": "Fecha de inicio",
+      "date_counter_helper": "La página mostrará cuántos días han pasado desde esta fecha.",
+      
+      "message_label": "Tu mensaje",
+      "message_placeholder": "Escribe un mensaje especial...",
+      "message_helper": "Sé creativo, cuenta tu historia o demuestra tu amor.",
+      
+      "upload_photos": "Seleccionar fotos",
+      "drag_drop_photos": "o arrastra y suelta aquí",
+      
+      "spotify_label": "Enlace de Spotify",
+      "spotify_placeholder": "https://open.spotify.com/track/...",
+      "spotify_helper": "Pega un enlace a una canción, álbum o lista de reproducción de Spotify.",
+      "spotify_error": "Por favor, ingresa un enlace válido de Spotify o déjalo en blanco.",
+      
+      "next_button": "Siguiente",
+      "prev_button": "Anterior",
+      "create_page_button": "Crear Página"
+    },
+    "preview": {
+      "preview_title": "Vista Previa",
+      "page_name": "Nombre de la página",
+      "page_title": "Título",
+      "counter": "Contador",
+      "message": "Mensaje",
+      "photos": "Fotos",
+      "spotify": "Música",
+      "days": "días"
+    }
+  }
+}

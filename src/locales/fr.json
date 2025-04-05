@@ -110,7 +110,7 @@
     "title_bar_description": "Afficher et gérer votre profil utilisateur"
   },
   "OrganizationProfile": {
-    "title_bar": "Gestion de l’organisation",
+    "title_bar": "Gestion de l'organisation",
     "title_bar_description": "Gérer votre organisation"
   },
   "Billing": {
@@ -162,5 +162,61 @@
     "message_title": "Message",
     "message_description": "Entrez un message détaillé pour votre todo.",
     "submit_button": "Envoyer"
+  },
+  "CreateLove": {
+    "title": "Créer une Page Personnalisée",
+    "description": "Complétez les étapes ci-dessous pour créer votre page de souvenirs spéciaux.",
+    "form": {
+      "step1_title": "Nom de la Page",
+      "step2_title": "Titre",
+      "step3_title": "Compteur",
+      "step4_title": "Message",
+      "step5_title": "Photos",
+      "step6_title": "Musique",
+      
+      "step1_description": "Choisissez un nom pour votre page. Il sera utilisé dans l'URL.",
+      "step2_description": "Ajoutez un titre qui apparaîtra en haut de votre page.",
+      "step3_description": "Sélectionnez une date qui symbolise le début de quelque chose de spécial.",
+      "step4_description": "Écrivez un message personnel ou racontez votre histoire.",
+      "step5_description": "Sélectionnez jusqu'à 10 photos pour personnaliser votre page.",
+      "step6_description": "Ajoutez une chanson Spotify à jouer sur votre page.",
+      
+      "page_name_label": "Nom de la page",
+      "page_name_placeholder": "Ex: Gabriel-et-Clara ou Joyeux-Anniversaire",
+      "page_name_helper": "Utilisez uniquement des lettres, des chiffres et des traits d'union. Pas d'espaces.",
+      
+      "page_title_label": "Titre de la page",
+      "page_title_placeholder": "Ex: Je t'aime depuis: ou Nos souvenirs",
+      "page_title_helper": "Ce titre apparaîtra en haut de votre page.",
+      
+      "date_counter_label": "Date de début",
+      "date_counter_helper": "La page affichera le nombre de jours écoulés depuis cette date.",
+      
+      "message_label": "Votre message",
+      "message_placeholder": "Écrivez un message spécial...",
+      "message_helper": "Soyez créatif, racontez votre histoire ou exprimez votre amour.",
+      
+      "upload_photos": "Sélectionner des photos",
+      "drag_drop_photos": "ou glissez-déposez ici",
+      
+      "spotify_label": "Lien Spotify",
+      "spotify_placeholder": "https://open.spotify.com/track/...",
+      "spotify_helper": "Collez un lien vers une chanson, un album ou une playlist Spotify.",
+      "spotify_error": "Veuillez entrer un lien Spotify valide ou laissez vide.",
+      
+      "next_button": "Suivant",
+      "prev_button": "Précédent",
+      "create_page_button": "Créer la Page"
+    },
+    "preview": {
+      "preview_title": "Aperçu",
+      "page_name": "Nom de la page",
+      "page_title": "Titre",
+      "counter": "Compteur",
+      "message": "Message",
+      "photos": "Photos",
+      "spotify": "Musique",
+      "days": "jours"
+    }
   }
 }

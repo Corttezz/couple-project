@@ -10,23 +10,23 @@ export const Hero = () => {
   const t = useTranslations('Hero');
 
   return (
-    <Section className="py-36">
+    <Section className="py-32">
       <CenteredHero
-        banner={(
-          <a
-            className={badgeVariants()}
-            href="https://twitter.com/ixartz"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <TwitterLogoIcon className="mr-1 size-5" />
-            {' '}
-            {t('follow_twitter')}
-          </a>
-        )}
+        // banner={(
+        //   <a
+        //     className={badgeVariants()}
+        //     href="https://twitter.com/ixartz"
+        //     target="_blank"
+        //     rel="noopener noreferrer"
+        //   >
+        //     <TwitterLogoIcon className="mr-1 size-5" />
+        //     {' '}
+        //     {t('follow_twitter')}
+        //   </a>
+        // )}
         title={t.rich('title', {
           important: chunks => (
-            <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#ad2568] via-[#cf5a90] to-[#ffcfcb] bg-clip-text text-transparent">
               {chunks}
             </span>
           ),
@@ -36,18 +36,18 @@ export const Hero = () => {
           <>
             <a
               className={buttonVariants({ size: 'lg' })}
-              href="https://github.com/ixartz/SaaS-Boilerplate"
+              href="/createLove"
             >
               {t('primary_button')}
             </a>
 
-            <a
+            {/* <a
               className={buttonVariants({ variant: 'outline', size: 'lg' })}
               href="https://github.com/ixartz/SaaS-Boilerplate"
             >
               <GitHubLogoIcon className="mr-2 size-5" />
               {t('secondary_button')}
-            </a>
+            </a> */}
           </>
         )}
       />
