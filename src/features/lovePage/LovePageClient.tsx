@@ -152,6 +152,7 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
     <main className="min-h-screen bg-black text-white overflow-x-hidden love-preview-scroll">
 
       {/* Efeito de background */}
+
       <BackgroundEffect effect={pageData.backgroundEffect || 'hearts'} />
 
       {/* Hero Section com Parallax - Ocupando toda a largura */}

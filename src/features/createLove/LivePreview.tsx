@@ -500,7 +500,7 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
               position: 'absolute',
               height: '100%',
               width: '100%',
-              zIndex: 0
+              zIndex: 11
             }}
           >
             <EffectBackground effect={formData.backgroundEffect} />
