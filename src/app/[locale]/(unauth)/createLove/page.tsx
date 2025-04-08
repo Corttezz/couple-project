@@ -2,7 +2,6 @@ import { useTranslations } from 'next-intl';
 
 import { Navbar } from '@/templates/Navbar';
 import { Footer } from '@/templates/Footer'; 
-import { Section } from '@/features/landing/Section';
 import { CreateLoveForm } from '@/features/createLove/CreateLoveForm';
 // Importe outros componentes que você precisará
 

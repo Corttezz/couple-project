@@ -4,6 +4,9 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useParams } from 'next/navigation';
 import type { FormData } from '../CreateLoveForm';
+import jwtEncode from 'jwt-encode';
+import { jwtDecode } from 'jwt-decode';
+import { getDecodedToken } from '@/utils/decodeToken';
 
 export const SpotifyStep = ({ 
   value, 
@@ -17,9 +20,9 @@ export const SpotifyStep = ({
   formData: FormData; // Certifique-se que o tipo FormData está sendo importado corretamente
 }) => {
   const t = useTranslations('CreateLove.form');
-  const router = useRouter();
-  const params = useParams();
-  
+  // const router = useRouter();
+  // const params = useParams();
+  const decodedToken = getDecodedToken();
   // Validar o link do Spotify (formato básico)
   const isValidSpotifyLink = (link: string) => {
     return link.trim() === '' || 
@@ -28,7 +31,7 @@ export const SpotifyStep = ({
            link.includes('spotify.com/playlist/');
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!formData) return;
 
     // Converter as fotos em URLs temporárias
@@ -47,11 +50,26 @@ export const SpotifyStep = ({
       backgroundEffect: formData.backgroundEffect
     };
     
-    console.log('Salvando dados com efeito:', pageData.backgroundEffect); // Debug
     localStorage.setItem(formData.pageName, JSON.stringify(pageData));
+    const jwt = jwtEncode(pageData, 'secret');
+    const urlIdentifier = formData.pageName.replace(/ /g, '-'); 
     
-    const locale = params?.locale || 'en';
-    router.push(`/${locale}/${formData.pageName}`);
+    // const locale = params?.locale || 'en';
+    // router.push(`/${locale}/${formData.pageName}`);
+
+    const createPageData = await fetch(`/api/page`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        jwt: jwt,
+        user_id: decodedToken?.userId,
+        url_identifier: urlIdentifier
+      }),
+    });
+    // eslint-disable-next-line no-unused-vars
+    await createPageData.json();
   };
   
   return (

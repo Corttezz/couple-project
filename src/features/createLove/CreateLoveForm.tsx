@@ -10,7 +10,6 @@ import { MessageStep } from './steps/MessageStep';
 import { PhotosStep } from './steps/PhotosStep';
 import { BackgroundEffectStep } from './steps/BackgroundEffectStep';
 import { SpotifyStep } from './steps/SpotifyStep';
-import { Preview } from './Preview';
 import type { ParticleEffect } from './types/particles';
 import { LivePreview } from './LivePreview';
 

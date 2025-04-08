@@ -19,7 +19,7 @@ const isProtectedRoute = createRouteMatcher([
   '/:locale/dashboard(.*)',
   '/onboarding(.*)',
   '/:locale/onboarding(.*)',
-  '/api(.*)',
+  '/api/users(.*)',
   '/:locale/api(.*)',
 ]);
 
@@ -27,6 +27,19 @@ export default function middleware(
   request: NextRequest,
   event: NextFetchEvent,
 ) {
+  // Permitir acesso público à rota /api/hello
+  if (request.nextUrl.pathname === '/api/hello') {
+    return NextResponse.next();
+  }
+
+  if (request.nextUrl.pathname === '/api/page') {
+    return NextResponse.next();
+  }
+
+  if (request.nextUrl.pathname === '/api/page/getPage') {
+    return NextResponse.next();
+  }
+
   if (
     request.nextUrl.pathname.includes('/sign-in')
     || request.nextUrl.pathname.includes('/sign-up')
@@ -34,34 +47,52 @@ export default function middleware(
   ) {
     return clerkMiddleware((auth, req) => {
       const authObj = auth();
+      
+      const isAuthenticated = authObj.userId !== null;
 
       if (isProtectedRoute(req)) {
-        const locale
-          = req.nextUrl.pathname.match(/(\/.*)\/dashboard/)?.at(1) ?? '';
+        if (request.nextUrl.pathname === '/api/hello-auth') {
+          if (!isAuthenticated) {
+            return new NextResponse(
+              JSON.stringify({ error: 'Não autorizado' }),
+              { status: 401 }
+            );
+          }
+          return NextResponse.next();
+        }
+        if (request.nextUrl.pathname.startsWith('/api/users')) {
+          if (!isAuthenticated) {
+            return new NextResponse(
+              JSON.stringify({ error: 'Não autorizado' }),
+              { status: 401 }
+            );
+          }
+          return NextResponse.next();
+        }
 
+        if (request.nextUrl.pathname === '/api/users/sync') {
+          if (!isAuthenticated) {
+            return new NextResponse(
+              JSON.stringify({ error: 'Não autorizado' }),
+              { status: 401 }
+            );
+          }
+          return NextResponse.next();
+        }
+
+        const locale = req.nextUrl.pathname.match(/(\/.*)\/dashboard/)?.at(1) ?? '';
         const signInUrl = new URL(`${locale}/sign-in`, req.url);
 
         authObj.protect({
-          // `unauthenticatedUrl` is needed to avoid error: "Unable to find `next-intl` locale because the middleware didn't run on this request"
           unauthenticatedUrl: signInUrl.toString(),
         });
       }
 
       if (
         authObj.userId
-        // && !authObj.orgId  // Comentado para não exigir a seleção de organização
         && req.nextUrl.pathname.includes('/dashboard')
         && !req.nextUrl.pathname.endsWith('/organization-selection')
       ) {
-        // Comentado para não redirecionar para a seleção de organização
-        // const orgSelection = new URL(
-        //   '/onboarding/organization-selection',
-        //   req.url,
-        // );
-
-        // return NextResponse.redirect(orgSelection);
-        
-        // Continue sem redirecionar
         return intlMiddleware(req);
       }
 
@@ -73,5 +104,5 @@ export default function middleware(
 }
 
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next|monitoring).*)', '/', '/(api|trpc)(.*)'], // Also exclude tunnelRoute used in Sentry from the matcher
+  matcher: ['/((?!.+\\.[\\w]+$|_next|monitoring).*)', '/', '/(api|trpc)(.*)'],
 };

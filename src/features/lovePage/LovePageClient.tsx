@@ -10,6 +10,7 @@ import Typewriter from 'typewriter-effect';
 import { Parallax } from 'react-parallax';
 import { BackgroundEffect } from './effects/BackgroundEffect';
 import { useTranslations } from 'use-intl';
+import { jwtDecode } from 'jwt-decode';
 
 interface PageData {
   pageTitle: string;
@@ -41,23 +42,45 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
   const dateT = useTranslations('CreateLove.dateTexts');
 
   useEffect(() => {
-    try {
-      const data = localStorage.getItem(params.pageName);
-      if (!data) {
-        notFound();
+    const fetchData = async () => {
+      const url = window.location.href;
+      const pageName = url.split('/').pop();
+
+      if (!pageName) {
+        console.error('Page name is undefined');
         return;
       }
-      console.log("Dados carregados:", JSON.parse(data));
-      setPageData(JSON.parse(data));
-      setLoading(false);
-    } catch (error) {
-      console.error('Erro ao carregar dados:', error);
-      notFound();
-    }
+
+      try {
+        const response = await fetch(`/api/page/getPage?url_identifier=${pageName}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        const decoded = jwtDecode(data.data.jwt) as PageData;
+        if (decoded) {
+          setPageData(decoded);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+        notFound();
+      }
+    };
+
+    fetchData();
   }, [params.pageName]);
 
   useEffect(() => {
     if (!pageData?.startDate?.date) return;
+    //console.log('pageData', pageData);
 
     const updateTime = () => {
       const start = new Date(pageData.startDate.date);
