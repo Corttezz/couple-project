@@ -39,8 +39,9 @@ export default function middleware(
   if (request.nextUrl.pathname === '/api/page/getPage') {
     return NextResponse.next();
   }
+  // env do clerk
   // eslint-disable-next-line no-console
-  console.log('request.nextUrl.pathname', request);
+  console.log('request.nextUrl.pathname', process.env.CLERK_SECRET_KEY);
 
   if (
     request.nextUrl.pathname.includes('/sign-in')
