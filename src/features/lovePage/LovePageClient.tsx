@@ -26,7 +26,7 @@ type PageData = {
   backgroundEffect?: string;
 };
 
-export function LovePageClient({ params }: { params: { pageName: string } }) {
+export function LovePageClient({ params }: { params: { pageName: string; locale?: string } }) {
   const [pageData, setPageData] = useState<PageData | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
