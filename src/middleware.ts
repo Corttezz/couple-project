@@ -39,7 +39,7 @@ export default function middleware(
   if (request.nextUrl.pathname === '/api/page/getPage') {
     return NextResponse.next();
   }
-
+  // eslint-disable-next-line no-console
   console.log('request.nextUrl.pathname', request);
 
   if (
