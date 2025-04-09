@@ -40,6 +40,8 @@ export default function middleware(
     return NextResponse.next();
   }
 
+  console.log('request.nextUrl.pathname', request);
+
   if (
     request.nextUrl.pathname.includes('/sign-in')
     || request.nextUrl.pathname.includes('/sign-up')
