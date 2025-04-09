@@ -1,7 +1,12 @@
 import { SignIn } from '@clerk/nextjs';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
+import { AllLocales } from '@/utils/AppConfig';
 import { getI18nPath } from '@/utils/Helpers';
+
+export function generateStaticParams() {
+  return AllLocales.map(locale => ({ locale }));
+}
 
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
@@ -15,8 +20,11 @@ export async function generateMetadata(props: { params: { locale: string } }) {
   };
 }
 
-const SignInPage = (props: { params: { locale: string } }) => (
-  <SignIn path={getI18nPath('/sign-in', props.params.locale)} />
-);
+const SignInPage = (props: { params: { locale: string } }) => {
+  // Habilita a renderização estática com next-intl
+  unstable_setRequestLocale(props.params.locale);
+
+  return <SignIn path={getI18nPath('/sign-in', props.params.locale)} />;
+};
 
 export default SignInPage;
