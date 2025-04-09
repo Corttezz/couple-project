@@ -13,7 +13,7 @@
     "company": "Company"
   },
   "Hero": {
-    "follow_twitter": "Follow @Ixartz on Twitter",
+    "follow_instagram": "Follow @withloove on Instagram",
     "title": "The perfect <important>SaaS template</important> to build and scale your business with ease.",
     "description": "A free and open-source landing page template for your SaaS business, built with React, TypeScript, Shadcn UI, and Tailwind CSS.",
     "primary_button": "Get Started",
@@ -209,26 +209,26 @@
       "page_name_label": "Page name",
       "page_name_placeholder": "Ex: Gabriel-and-Clara or Happy-Birthday",
       "page_name_helper": "Use only letters, numbers, and hyphens. No spaces.",
-      
+
       "page_title_label": "Page title",
       "page_title_placeholder": "Ex: Loving you for: or Our memories",
       "page_title_helper": "This title will appear at the top of your page.",
-      
+
       "date_counter_label": "Start date",
       "date_counter_helper": "The page will show how many days have passed since this date.",
-      
+
       "message_label": "Your message",
       "message_placeholder": "Write a special message...",
       "message_helper": "Be creative, tell your story or show your love.",
-      
+
       "upload_photos": "Select photos",
       "drag_drop_photos": "or drag and drop here",
-      
+
       "spotify_label": "Spotify Link",
       "spotify_placeholder": "https://open.spotify.com/track/...",
       "spotify_helper": "Paste a link to a Spotify song, album, or playlist.",
       "spotify_error": "Please enter a valid Spotify link or leave it blank.",
-      
+
       "next_button": "Next",
       "prev_button": "Previous",
       "create_page_button": "Create Page"
@@ -268,6 +268,6 @@
       "friends_since": "We're friends since",
       "first_kiss": "Our first kiss was on",
       "first_date": "Our first date was on"
-    }    
+    }
   }
 }

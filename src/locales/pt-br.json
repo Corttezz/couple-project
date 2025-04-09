@@ -13,7 +13,7 @@
     "company": "Empresa"
   },
   "Hero": {
-    "follow_twitter": "Siga @Ixartz no Twitter",
+    "follow_instagram": "Siga @withloove no Instagram",
     "title": "O <important>template SaaS</important> ideal para criar e escalar seu negócio com facilidade.",
     "description": "Um template gratuito e open-source para landing page de SaaS, feito com React, TypeScript, Shadcn UI e Tailwind CSS.",
     "primary_button": "Começar",
@@ -209,26 +209,26 @@
       "page_name_label": "Nome da página",
       "page_name_placeholder": "Ex: Gabriel-e-Clara ou Feliz-Aniversario",
       "page_name_helper": "Use somente letras, números e hífens. Sem espaços.",
-      
+
       "page_title_label": "Título da página",
       "page_title_placeholder": "Ex: Te amo há: ou Nossas memórias",
       "page_title_helper": "Este título vai aparecer no topo da sua página.",
-      
+
       "date_counter_label": "Data de início",
       "date_counter_helper": "A página mostrará quantos dias se passaram desde esta data.",
-      
+
       "message_label": "Sua mensagem",
       "message_placeholder": "Escreva uma mensagem especial...",
       "message_helper": "Seja criativo, conte sua história ou demonstre seu amor.",
-      
+
       "upload_photos": "Selecionar fotos",
       "drag_drop_photos": "ou arraste e solte aqui",
-      
+
       "spotify_label": "Link do Spotify",
       "spotify_placeholder": "https://open.spotify.com/track/...",
       "spotify_helper": "Cole o link de uma música, álbum ou playlist do Spotify.",
       "spotify_error": "Por favor, insira um link válido do Spotify ou deixe em branco.",
-      
+
       "next_button": "Próximo",
       "prev_button": "Anterior",
       "create_page_button": "Criar Página"

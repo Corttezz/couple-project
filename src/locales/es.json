@@ -13,7 +13,7 @@
     "company": "Empresa"
   },
   "Hero": {
-    "follow_twitter": "Sigue a @Ixartz en Twitter",
+    "follow_instagram": "Sigue a @withloove en Instagram",
     "title": "La <important>plantilla SaaS</important> perfecta para construir y escalar tu negocio con facilidad.",
     "description": "Una plantilla gratuita y de código abierto para la landing page de tu negocio SaaS, construida con React, TypeScript, Shadcn UI y Tailwind CSS.",
     "primary_button": "Empezar",
@@ -175,29 +175,29 @@
       "step5_title": "Contador",
       "step6_title": "Música",
       "step7_title": "Efecto de fondo",
-    "background_effects": {
-      "title": "Efectos de fondo",
-      "description": "Selecciona un efecto de fondo para tu página.",
-      "hearts": {
-        "name": "Corações",
-        "description": "Un efecto de fondo con corazones."
-      },
-      "stars": {
-        "name": "Estrellas",
-        "description": "Un efecto de fondo con estrellas."
-      },
-      "bubbles": {
-        "name": "Burbujas",
-        "description": "Un efecto de fondo con burbujas."
-      },
-      "confetti": {
-        "name": "Confetti",
-        "description": "Un efecto de fondo con confetti."
-      },
-      "fireflies": {
-        "name": "Vagalumes",
-        "description": "Un efecto de fondo con vagalumes."
-      }
+      "background_effects": {
+        "title": "Efectos de fondo",
+        "description": "Selecciona un efecto de fondo para tu página.",
+        "hearts": {
+          "name": "Corações",
+          "description": "Un efecto de fondo con corazones."
+        },
+        "stars": {
+          "name": "Estrellas",
+          "description": "Un efecto de fondo con estrellas."
+        },
+        "bubbles": {
+          "name": "Burbujas",
+          "description": "Un efecto de fondo con burbujas."
+        },
+        "confetti": {
+          "name": "Confetti",
+          "description": "Un efecto de fondo con confetti."
+        },
+        "fireflies": {
+          "name": "Vagalumes",
+          "description": "Un efecto de fondo con vagalumes."
+        }
       },
       "step1_description": "Elige un nombre para tu página. Se usará en la URL.",
       "step2_description": "Agrega un título que aparecerá en la parte superior de tu página.",
@@ -209,26 +209,26 @@
       "page_name_label": "Nombre de la página",
       "page_name_placeholder": "Ej: Gabriel-y-Clara o Feliz-Cumpleanos",
       "page_name_helper": "Usa solo letras, números y guiones. Sin espacios.",
-      
+
       "page_title_label": "Título de la página",
       "page_title_placeholder": "Ej: Te amo desde hace: o Nuestros recuerdos",
       "page_title_helper": "Este título aparecerá en la parte superior de tu página.",
-      
+
       "date_counter_label": "Fecha de inicio",
       "date_counter_helper": "La página mostrará cuántos días han pasado desde esta fecha.",
-      
+
       "message_label": "Tu mensaje",
       "message_placeholder": "Escribe un mensaje especial...",
       "message_helper": "Sé creativo, cuenta tu historia o demuestra tu amor.",
-      
+
       "upload_photos": "Seleccionar fotos",
       "drag_drop_photos": "o arrastra y suelta aquí",
-      
+
       "spotify_label": "Enlace de Spotify",
       "spotify_placeholder": "https://open.spotify.com/track/...",
       "spotify_helper": "Pega un enlace a una canción, álbum o lista de reproducción de Spotify.",
       "spotify_error": "Por favor, ingresa un enlace válido de Spotify o déjalo en blanco.",
-      
+
       "next_button": "Siguiente",
       "prev_button": "Anterior",
       "create_page_button": "Crear Página"

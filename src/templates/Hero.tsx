@@ -1,4 +1,4 @@
-import { TwitterLogoIcon } from '@radix-ui/react-icons';
+import { InstagramLogoIcon } from '@radix-ui/react-icons';
 import { useTranslations } from 'next-intl';
 
 import { badgeVariants } from '@/components/ui/badgeVariants';
@@ -15,13 +15,13 @@ export const Hero = () => {
         banner={(
           <a
             className={badgeVariants()}
-            href="https://twitter.com/ixartz"
+            href="https://www.instagram.com/withloove"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <TwitterLogoIcon className="mr-1 size-5" />
+            <InstagramLogoIcon className="mr-1 size-5" />
             {' '}
-            {t('follow_twitter')}
+            {t('follow_instagram')}
           </a>
         )}
         title={t.rich('title', {

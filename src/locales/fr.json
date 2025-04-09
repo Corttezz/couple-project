@@ -13,7 +13,7 @@
     "company": "Entreprise"
   },
   "Hero": {
-    "follow_twitter": "Suivez @Ixartz sur Twitter",
+    "follow_instagram": "Suivez @withloove sur Instagram",
     "title": "Le parfait <important>SaaS template</important> pour construire et mettre à l'échelle votre entreprise en toute simplicité.",
     "description": "Un template gratuit et open-source de landing page pour votre entreprise SaaS, construit avec React, TypeScript, Shadcn UI et Tailwind CSS.",
     "primary_button": "Démarrer",
@@ -207,30 +207,30 @@
           "description": "Un effet de fond avec des lucioles."
         }
       },
-      
+
       "page_name_label": "Nom de la page",
       "page_name_placeholder": "Ex: Gabriel-et-Clara ou Joyeux-Anniversaire",
       "page_name_helper": "Utilisez uniquement des lettres, des chiffres et des traits d'union. Pas d'espaces.",
-      
+
       "page_title_label": "Titre de la page",
       "page_title_placeholder": "Ex: Je t'aime depuis: ou Nos souvenirs",
       "page_title_helper": "Ce titre apparaîtra en haut de votre page.",
-      
+
       "date_counter_label": "Date de début",
       "date_counter_helper": "La page affichera le nombre de jours écoulés depuis cette date.",
-      
+
       "message_label": "Votre message",
       "message_placeholder": "Écrivez un message spécial...",
       "message_helper": "Soyez créatif, racontez votre histoire ou exprimez votre amour.",
-      
+
       "upload_photos": "Sélectionner des photos",
       "drag_drop_photos": "ou glissez-déposez ici",
-      
+
       "spotify_label": "Lien Spotify",
       "spotify_placeholder": "https://open.spotify.com/track/...",
       "spotify_helper": "Collez un lien vers une chanson, un album ou une playlist Spotify.",
       "spotify_error": "Veuillez entrer un lien Spotify valide ou laissez vide.",
-      
+
       "next_button": "Suivant",
       "prev_button": "Précédent",
       "create_page_button": "Créer la Page"
