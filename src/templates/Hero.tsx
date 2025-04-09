@@ -1,4 +1,4 @@
-import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons';
+import { TwitterLogoIcon } from '@radix-ui/react-icons';
 import { useTranslations } from 'next-intl';
 
 import { badgeVariants } from '@/components/ui/badgeVariants';
@@ -12,18 +12,18 @@ export const Hero = () => {
   return (
     <Section className="py-32">
       <CenteredHero
-        // banner={(
-        //   <a
-        //     className={badgeVariants()}
-        //     href="https://twitter.com/ixartz"
-        //     target="_blank"
-        //     rel="noopener noreferrer"
-        //   >
-        //     <TwitterLogoIcon className="mr-1 size-5" />
-        //     {' '}
-        //     {t('follow_twitter')}
-        //   </a>
-        // )}
+        banner={(
+          <a
+            className={badgeVariants()}
+            href="https://twitter.com/ixartz"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <TwitterLogoIcon className="mr-1 size-5" />
+            {' '}
+            {t('follow_twitter')}
+          </a>
+        )}
         title={t.rich('title', {
           important: chunks => (
             <span className="bg-gradient-to-r from-[#ad2568] via-[#cf5a90] to-[#ffcfcb] bg-clip-text text-transparent">

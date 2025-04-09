@@ -1,18 +1,20 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { jwtDecode } from 'jwt-decode';
+import { Heart, MessageCircleHeart } from 'lucide-react';
 import { notFound } from 'next/navigation';
-import { SpotifyEmbed } from '@/components/SpotifyEmbed';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Music, MessageCircleHeart } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Parallax } from 'react-parallax';
 import { Tilt } from 'react-tilt';
 import Typewriter from 'typewriter-effect';
-import { Parallax } from 'react-parallax';
-import { BackgroundEffect } from './effects/BackgroundEffect';
 import { useTranslations } from 'use-intl';
-import { jwtDecode } from 'jwt-decode';
 
-interface PageData {
+import { SpotifyEmbed } from '@/components/SpotifyEmbed';
+
+import { BackgroundEffect } from './effects/BackgroundEffect';
+
+type PageData = {
   pageTitle: string;
   startDate: {
     date: string;
@@ -22,7 +24,7 @@ interface PageData {
   photos: string[];
   spotifyUrl?: string;
   backgroundEffect?: string;
-}
+};
 
 export function LovePageClient({ params }: { params: { pageName: string } }) {
   const [pageData, setPageData] = useState<PageData | null>(null);
@@ -34,7 +36,7 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0
+    seconds: 0,
   });
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
@@ -79,8 +81,10 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
   }, [params.pageName]);
 
   useEffect(() => {
-    if (!pageData?.startDate?.date) return;
-    //console.log('pageData', pageData);
+    if (!pageData?.startDate?.date) {
+      return;
+    }
+    // console.log('pageData', pageData);
 
     const updateTime = () => {
       const start = new Date(pageData.startDate.date);
@@ -100,7 +104,7 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
         days: days % 30,
         hours: hours % 24,
         minutes: minutes % 60,
-        seconds: seconds % 60
+        seconds: seconds % 60,
       });
     };
 
@@ -110,17 +114,18 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
   }, [pageData?.startDate?.date]);
 
   useEffect(() => {
-    if (pageData?.photos.length > 1) {
+    if (pageData?.photos && pageData.photos.length > 1) {
       const interval = setInterval(() => {
-        setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % pageData.photos.length);
+        setCurrentPhotoIndex(prevIndex => (prevIndex + 1) % pageData.photos.length);
       }, 3000);
       return () => clearInterval(interval);
     }
+    return () => {}; // Add an empty cleanup function
   }, [pageData?.photos]);
 
-  const formatTimeElapsed = (timeElapsed) => {
+  const formatTimeElapsed = (timeElapsed: { years: number; months: number; days: number; hours: number; minutes: number; seconds: number }) => {
     const parts = [];
-    
+
     if (timeElapsed.years > 0) {
       parts.push(`${timeElapsed.years} ${timeT(timeElapsed.years === 1 ? 'year_one' : 'year_other')}`);
     }
@@ -139,7 +144,7 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
     if (timeElapsed.seconds > 0) {
       parts.push(`${timeElapsed.seconds} ${timeT(timeElapsed.seconds === 1 ? 'second_one' : 'second_other')}`);
     }
-    
+
     return parts;
   };
 
@@ -149,30 +154,30 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
+      <div className="flex min-h-screen items-center justify-center bg-black">
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [1, 0.8, 1]
+            opacity: [1, 0.8, 1],
           }}
           transition={{
             duration: 1,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: 'easeInOut',
           }}
         >
-          <Heart className="w-16 h-16 text-primary" />
+          <Heart className="size-16 text-primary" />
         </motion.div>
       </div>
     );
   }
 
-  if (!pageData) {
+  if (!pageData || !pageData.photos) {
     notFound();
   }
 
   return (
-    <main className="min-h-screen bg-black text-white overflow-x-hidden love-preview-scroll">
+    <main className="love-preview-scroll min-h-screen overflow-x-hidden bg-black text-white">
 
       {/* Efeito de background */}
 
@@ -186,14 +191,14 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
         strength={200}
         className="h-screen w-full"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black w-full" />
-        <div className="relative h-screen flex flex-col items-center justify-center text-center p-4">
-          <div className="max-w-5xl mx-auto w-full">
+        <div className="absolute inset-0 w-full bg-gradient-to-b from-black/60 via-black/40 to-black" />
+        <div className="relative flex h-screen flex-col items-center justify-center p-4 text-center">
+          <div className="mx-auto w-full max-w-5xl">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ type: "spring", duration: 1 }}
-              className="mb-8 text-5xl md:text-7xl font-bold"
+              transition={{ type: 'spring', duration: 1 }}
+              className="mb-8 text-5xl font-bold md:text-7xl"
             >
               <Typewriter
                 options={{
@@ -201,23 +206,23 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
                   autoStart: true,
                   loop: true,
                   delay: 75,
-                  deleteSpeed: 50
+                  deleteSpeed: 50,
                 }}
               />
             </motion.div>
 
             {pageData.startDate.date && pageData.startDate.textType && (
-              <div className="text-center mb-8">
-                <p className="text-2xl text-gray-300 mb-4">
+              <div className="mb-8 text-center">
+                <p className="mb-4 text-2xl text-gray-300">
                   {getDateText(pageData.startDate.textType)}
                 </p>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                <div className="grid grid-cols-2 gap-4 text-center md:grid-cols-3">
                   {formatTimeElapsed(timeElapsed).map((text, index) => (
                     <div
                       key={index}
-                      className="bg-white/10 backdrop-blur-sm rounded-lg p-4"
+                      className="rounded-lg bg-white/10 p-4 backdrop-blur-sm"
                     >
-                      <div className="text-2xl md:text-4xl font-bold text-primary">{text}</div>
+                      <div className="text-2xl font-bold text-primary md:text-4xl">{text}</div>
                     </div>
                   ))}
                 </div>
@@ -228,17 +233,17 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
       </Parallax>
 
       {/* Conteúdo restante com largura máxima */}
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="relative z-10 mx-auto max-w-5xl">
         {/* Spotify */}
         {pageData.spotifyUrl && (
           <motion.section
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="py-10 px-4"
+            className="px-4 py-10"
           >
-            <div className="max-w-3xl mx-auto">
-              <div className="bg-white/5 p-6 rounded-xl backdrop-blur-sm">
+            <div className="mx-auto max-w-3xl">
+              <div className="rounded-xl bg-white/5 p-6 backdrop-blur-sm">
                 <SpotifyEmbed url={pageData.spotifyUrl} />
               </div>
             </div>
@@ -248,16 +253,16 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
         <section className="py-20">
           <Tilt
             options={{ max: 25, scale: 1.05 }}
-            className="max-w-3xl mx-auto px-4"
+            className="mx-auto max-w-3xl px-4"
           >
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-lg p-8 rounded-2xl shadow-xl"
+              className="rounded-2xl bg-gradient-to-r from-primary/20 to-primary/10 p-8 shadow-xl backdrop-blur-lg"
             >
-              <MessageCircleHeart className="w-12 h-12 text-primary mb-4" />
-              <p className="text-xl leading-relaxed whitespace-pre-wrap break-words text-gray-200">
+              <MessageCircleHeart className="mb-4 size-12 text-primary" />
+              <p className="whitespace-pre-wrap break-words text-xl leading-relaxed text-gray-200">
                 {pageData.message}
               </p>
             </motion.div>
@@ -265,13 +270,13 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
         </section>
 
         {/* Galeria de Fotos */}
-        <section className="py-20 px-4">
+        <section className="px-4 py-20">
           <div className="container mx-auto flex justify-center">
-            <div className="w-96 h-96 rounded-xl overflow-hidden">
+            <div className="size-96 overflow-hidden rounded-xl">
               <img
                 src={pageData.photos[currentPhotoIndex]}
                 alt=""
-                className="w-full h-full object-cover"
+                className="size-full object-cover"
               />
             </div>
           </div>
@@ -286,7 +291,7 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedPhoto(null)}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
           >
             <motion.img
               initial={{ scale: 0.5 }}
@@ -294,11 +299,11 @@ export function LovePageClient({ params }: { params: { pageName: string } }) {
               exit={{ scale: 0.5 }}
               src={selectedPhoto}
               alt=""
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+              className="max-h-[90vh] max-w-full rounded-lg object-contain"
             />
           </motion.div>
         )}
       </AnimatePresence>
     </main>
   );
-} 
+}

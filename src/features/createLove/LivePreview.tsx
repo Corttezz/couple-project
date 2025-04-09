@@ -1,13 +1,16 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Music, MessageCircleHeart } from 'lucide-react';
-import { FormData } from './CreateLoveForm';
-import { useTranslations } from 'next-intl';
-import { useState, useEffect, useRef } from 'react';
-import { SpotifyEmbed } from '@/components/SpotifyEmbed';
-import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+
+import { AnimatePresence, motion } from 'framer-motion';
+import { Heart, MessageCircleHeart, Music } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useEffect, useRef, useState } from 'react';
+
+import { SpotifyEmbed } from '@/components/SpotifyEmbed';
+
+import type { FormData } from './CreateLoveForm';
+import type { BackgroundEffect } from './types/backgroundEffects';
 
 // Componentes de efeito específicos para o preview
 const HeartsPreview = () => {
@@ -17,60 +20,61 @@ const HeartsPreview = () => {
   useEffect(() => {
     // Limpar corações antigos
     setHearts([]);
-    
+
     // Obter dimensões do container
     const container = containerRef.current;
-    if (!container) return;
-    
+    if (!container) {
+      return;
+    }
+
     const containerHeight = container.clientHeight;
-    
+
     // Criar novos corações
     const newHearts = [];
     for (let i = 0; i < 15; i++) {
       const size = Math.random() * 15 + 5;
       const duration = Math.random() * 10 + 5;
       const initialX = Math.random() * 100;
-      const initialY = Math.random() * containerHeight;
       const delay = Math.random() * 3;
-      
+
       newHearts.push(
         <motion.div
           key={i}
-          className="absolute text-primary pointer-events-none"
-          initial={{ 
-            x: `${initialX}%`, 
+          className="pointer-events-none absolute text-primary"
+          initial={{
+            x: `${initialX}%`,
             y: containerHeight + size, // Começa abaixo do container
-            opacity: Math.random() * 0.5 + 0.2
+            opacity: Math.random() * 0.5 + 0.2,
           }}
-          animate={{ 
-            y: -size // Termina acima do container
+          animate={{
+            y: -size, // Termina acima do container
           }}
           transition={{
             duration,
             repeat: Infinity,
             delay,
-            ease: 'linear'
+            ease: 'linear',
           }}
-          style={{ 
+          style={{
             left: `${initialX}%`,
             width: size,
-            height: size
+            height: size,
           }}
         >
           <Heart size={size} fill="currentColor" />
-        </motion.div>
+        </motion.div>,
       );
     }
-    
+
     setHearts(newHearts);
-    
+
     return () => {
       setHearts([]);
     };
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div ref={containerRef} className="pointer-events-none absolute inset-0 overflow-hidden">
       {hearts}
     </div>
   );
@@ -83,47 +87,49 @@ const StarsPreview = () => {
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
-    
+    if (!container) {
+      return;
+    }
+
     const newStars = [];
     for (let i = 0; i < 30; i++) {
       const size = Math.random() * 3 + 1;
       const x = Math.random() * 100;
       const y = Math.random() * 100;
       const duration = Math.random() * 2 + 1;
-      
+
       newStars.push(
         <motion.div
           key={i}
-          className="absolute bg-white rounded-full pointer-events-none"
+          className="pointer-events-none absolute rounded-full bg-white"
           style={{
             left: `${x}%`,
             top: `${y}%`,
             width: size,
-            height: size
+            height: size,
           }}
           animate={{
             scale: [1, 1.5, 1],
-            opacity: [0.5, 1, 0.5]
+            opacity: [0.5, 1, 0.5],
           }}
           transition={{
             duration,
             repeat: Infinity,
-            ease: 'easeInOut'
+            ease: 'easeInOut',
           }}
-        />
+        />,
       );
     }
-    
+
     setStars(newStars);
-    
+
     return () => {
       setStars([]);
     };
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div ref={containerRef} className="pointer-events-none absolute inset-0 overflow-hidden">
       {stars}
     </div>
   );
@@ -135,10 +141,12 @@ const BubblesPreview = () => {
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
-    
+    if (!container) {
+      return;
+    }
+
     const containerHeight = container.clientHeight;
-    
+
     const newBubbles = [];
     for (let i = 0; i < 15; i++) {
       const size = Math.random() * 20 + 10;
@@ -147,22 +155,22 @@ const BubblesPreview = () => {
       const delay = Math.random() * 3;
       const hue = Math.floor(Math.random() * 360);
       const color = `hsla(${hue}, 70%, 80%, 0.4)`;
-      
+
       newBubbles.push(
         <motion.div
           key={i}
-          className="absolute rounded-full pointer-events-none"
-          initial={{ 
-            x: `${initialX}%`, 
-            y: containerHeight + size
+          className="pointer-events-none absolute rounded-full"
+          initial={{
+            x: `${initialX}%`,
+            y: containerHeight + size,
           }}
-          animate={{ 
+          animate={{
             y: -size,
             x: [
               `${initialX}%`,
               `${initialX - 10 + Math.random() * 20}%`,
-              `${initialX}%`
-            ]
+              `${initialX}%`,
+            ],
           }}
           transition={{
             duration,
@@ -172,29 +180,29 @@ const BubblesPreview = () => {
             x: {
               duration: 3,
               repeat: Infinity,
-              repeatType: 'mirror'
-            }
+              repeatType: 'mirror',
+            },
           }}
-          style={{ 
+          style={{
             left: `${initialX}%`,
             width: size,
             height: size,
             background: color,
-            boxShadow: `0 0 5px ${color}, 0 0 10px ${color}`
+            boxShadow: `0 0 5px ${color}, 0 0 10px ${color}`,
           }}
-        />
+        />,
       );
     }
-    
+
     setBubbles(newBubbles);
-    
+
     return () => {
       setBubbles([]);
     };
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div ref={containerRef} className="pointer-events-none absolute inset-0 overflow-hidden">
       {bubbles}
     </div>
   );
@@ -206,10 +214,12 @@ const ConfettiPreview = () => {
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
-    
+    if (!container) {
+      return;
+    }
+
     const containerHeight = container.clientHeight;
-    
+
     const newConfetti = [];
     for (let i = 0; i < 30; i++) {
       const size = Math.random() * 6 + 3;
@@ -222,24 +232,24 @@ const ConfettiPreview = () => {
       const width = size;
       const height = isSquare ? size : size * 1.5;
       const rotation = Math.random() * 360;
-      
+
       newConfetti.push(
         <motion.div
           key={i}
-          className="absolute pointer-events-none"
-          initial={{ 
-            x: `${initialX}%`, 
+          className="pointer-events-none absolute"
+          initial={{
+            x: `${initialX}%`,
             y: -size,
-            rotate: rotation
+            rotate: rotation,
           }}
-          animate={{ 
+          animate={{
             y: containerHeight + size,
             rotate: rotation + 360 * (Math.random() > 0.5 ? 1 : -1),
             x: [
               `${initialX}%`,
               `${initialX - 10 + Math.random() * 20}%`,
-              `${initialX - 5 + Math.random() * 10}%`
-            ]
+              `${initialX - 5 + Math.random() * 10}%`,
+            ],
           }}
           transition={{
             duration,
@@ -249,28 +259,28 @@ const ConfettiPreview = () => {
             x: {
               duration: duration / 2,
               repeat: 2,
-              repeatType: 'mirror'
-            }
+              repeatType: 'mirror',
+            },
           }}
-          style={{ 
+          style={{
             left: `${initialX}%`,
             width,
             height,
-            backgroundColor: color
+            backgroundColor: color,
           }}
-        />
+        />,
       );
     }
-    
+
     setConfetti(newConfetti);
-    
+
     return () => {
       setConfetti([]);
     };
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div ref={containerRef} className="pointer-events-none absolute inset-0 overflow-hidden">
       {confetti}
     </div>
   );
@@ -282,8 +292,10 @@ const FirefliesPreview = () => {
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
-    
+    if (!container) {
+      return;
+    }
+
     const newFireflies = [];
     for (let i = 0; i < 15; i++) {
       const size = Math.random() * 4 + 2;
@@ -292,62 +304,62 @@ const FirefliesPreview = () => {
       const duration = Math.random() * 5 + 3;
       const hue = 40 + Math.random() * 20;
       const color = `hsla(${hue}, 100%, 70%, 0.8)`;
-      
+
       newFireflies.push(
         <motion.div
           key={i}
-          className="absolute rounded-full pointer-events-none"
-          initial={{ 
-            x: `${x}%`, 
+          className="pointer-events-none absolute rounded-full"
+          initial={{
+            x: `${x}%`,
             y: `${y}%`,
-            opacity: 0
+            opacity: 0,
           }}
-          animate={{ 
+          animate={{
             x: [
               `${x}%`,
               `${x - 5 + Math.random() * 10}%`,
-              `${x}%`
+              `${x}%`,
             ],
             y: [
               `${y}%`,
               `${y - 5 + Math.random() * 10}%`,
-              `${y}%`
+              `${y}%`,
             ],
-            opacity: [0, 1, 0.5, 0]
+            opacity: [0, 1, 0.5, 0],
           }}
           transition={{
             duration,
             repeat: Infinity,
-            ease: 'easeInOut'
+            ease: 'easeInOut',
           }}
-          style={{ 
+          style={{
             left: `${x}%`,
             top: `${y}%`,
             width: size,
             height: size,
             backgroundColor: color,
-            boxShadow: `0 0 ${size * 2}px ${color}, 0 0 ${size * 4}px ${color}`
+            boxShadow: `0 0 ${size * 2}px ${color}, 0 0 ${size * 4}px ${color}`,
           }}
-        />
+        />,
       );
     }
-    
+
     setFireflies(newFireflies);
-    
+
     return () => {
       setFireflies([]);
     };
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div ref={containerRef} className="pointer-events-none absolute inset-0 overflow-hidden">
       {fireflies}
     </div>
   );
 };
 
 // Componente para selecionar o efeito
-const EffectBackground = ({ effect }) => {
+const EffectBackground = ({ effect }: { effect: BackgroundEffect }) => {
   // Força a recriação completa do componente quando o efeito muda
   switch (effect) {
     case 'hearts':
@@ -377,23 +389,25 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0
+    seconds: 0,
   });
-  
+
   // Referência para o container principal
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Função para validar URL do Spotify
   const isValidSpotifyUrl = (url: string) => {
-    return url.trim() !== '' && 
-           (url.includes('spotify.com/track/') || 
-            url.includes('spotify.com/album/') || 
-            url.includes('spotify.com/playlist/'));
+    return url.trim() !== ''
+      && (url.includes('spotify.com/track/')
+        || url.includes('spotify.com/album/')
+        || url.includes('spotify.com/playlist/'));
   };
-  
+
   // Calcular o tempo decorrido
   useEffect(() => {
-    if (!formData.startDate.date) return;
+    if (!formData.startDate.date) {
+      return;
+    }
 
     const updateTime = () => {
       const start = formData.startDate.date as Date;
@@ -413,7 +427,7 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
         days: days % 30,
         hours: hours % 24,
         minutes: minutes % 60,
-        seconds: seconds % 60
+        seconds: seconds % 60,
       });
     };
 
@@ -427,24 +441,26 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
   useEffect(() => {
     // Incrementar a key para forçar a recriação
     setKey(prev => prev + 1);
+    return () => {}; // Add an empty cleanup function
   }, [formData.backgroundEffect]);
-  
+
   // Alternância de fotos
   useEffect(() => {
     if (formData.photos.length > 1) {
       const interval = setInterval(() => {
-        setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % formData.photos.length);
+        setCurrentPhotoIndex(prevIndex => (prevIndex + 1) % formData.photos.length);
       }, 3000);
       return () => clearInterval(interval);
     }
+    return () => {}; // Add an empty cleanup function for other paths
   }, [formData.photos]);
-  
+
   // Converter fotos em URLs
   const photoUrls = formData.photos.map(photo => URL.createObjectURL(photo));
-  
-  const formatTimeElapsed = (timeElapsed) => {
+
+  const formatTimeElapsed = (timeElapsed: { years: number; months: number; days: number; hours: number; minutes: number; seconds: number }) => {
     const parts = [];
-    
+
     if (timeElapsed.years > 0) {
       parts.push(`${timeElapsed.years} ${timeT(timeElapsed.years === 1 ? 'year_one' : 'year_other')}`);
     }
@@ -463,7 +479,7 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
     if (timeElapsed.seconds > 0) {
       parts.push(`${timeElapsed.seconds} ${timeT(timeElapsed.seconds === 1 ? 'second_one' : 'second_other')}`);
     }
-    
+
     return parts;
   };
 
@@ -472,73 +488,76 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col">
       {/* Barra de endereço simulada */}
-      <div className="bg-[#2D2D2D] p-2 flex items-center gap-2 rounded-t-lg">
+      <div className="flex items-center gap-2 rounded-t-lg bg-[#2D2D2D] p-2">
         <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
-          <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
-          <div className="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+          <div className="size-3 rounded-full bg-[#FF5F56]"></div>
+          <div className="size-3 rounded-full bg-[#FFBD2E]"></div>
+          <div className="size-3 rounded-full bg-[#27C93F]"></div>
         </div>
-        <div className="flex-1 bg-[#1D1D1D] rounded-md px-3 py-1.5 text-sm text-gray-300 text-center">
-          withloove.com/{formData.pageName || t('your_page_name')}
+        <div className="flex-1 rounded-md bg-[#1D1D1D] px-3 py-1.5 text-center text-sm text-gray-300">
+          withloove.com/
+          {formData.pageName || t('your_page_name')}
         </div>
       </div>
 
       {/* Conteúdo com scroll */}
-      <div 
+      <div
         ref={containerRef}
-        className="flex-1 bg-black text-white overflow-y-auto overflow-x-hidden relative"
+        className="relative flex-1 overflow-y-auto overflow-x-hidden bg-black text-white"
         style={{ isolation: 'isolate' }}
       >
         <div className="min-h-full">
           {/* Efeito de fundo */}
-          <div 
-            className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden pointer-events-none"
-            key={`effect-${formData.backgroundEffect}-${key}`} 
-            style={{ 
+          <div
+            className="pointer-events-none absolute inset-0 overflow-hidden"
+            key={`effect-${formData.backgroundEffect}-${key}`}
+            style={{
               position: 'absolute',
               height: '100%',
               width: '100%',
-              zIndex: 11
+              zIndex: 11,
             }}
           >
             <EffectBackground effect={formData.backgroundEffect} />
           </div>
-          
+
           <div className="relative z-10">
             {/* Hero Section */}
-            <div className="h-[40vh] min-h-[200px] relative overflow-hidden">
-              {photoUrls[0] ? (
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
-                  <img
-                    src={photoUrls[0]}
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-primary/20 to-black" />
-              )}
-              
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
-                <h1 className="text-xl md:text-2xl font-bold text-white mb-4">
+            <div className="relative h-[40vh] min-h-[200px] overflow-hidden">
+              {photoUrls[0]
+                ? (
+                    <div className="absolute inset-0">
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
+                      <img
+                        src={photoUrls[0]}
+                        alt=""
+                        className="size-full object-cover"
+                      />
+                    </div>
+                  )
+                : (
+                    <div className="absolute inset-0 bg-gradient-to-b from-primary/30 via-primary/20 to-black" />
+                  )}
+
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                <h1 className="mb-4 text-xl font-bold text-white md:text-2xl">
                   {formData.pageTitle || t('sample_title')}
                 </h1>
-                
+
                 {formData.startDate.date && formData.startDate.textType && (
-                  <div className="text-center mb-4">
-                    <p className="text-lg text-gray-300 mb-2">
+                  <div className="mb-4 text-center">
+                    <p className="mb-2 text-lg text-gray-300">
                       {getDateText(formData.startDate.textType)}
                     </p>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-center">
+                    <div className="grid grid-cols-2 gap-2 text-center md:grid-cols-3">
                       {formatTimeElapsed(timeElapsed).map((text, index) => (
                         <div
                           key={index}
-                          className="bg-white/10 backdrop-blur-sm rounded-lg px-3 py-1"
+                          className="rounded-lg bg-white/10 px-3 py-1 backdrop-blur-sm"
                         >
-                          <div className="text-sm md:text-lg font-bold text-primary">{text}</div>
+                          <div className="text-sm font-bold text-primary md:text-lg">{text}</div>
                         </div>
                       ))}
                     </div>
@@ -549,9 +568,13 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
 
             {/* Spotify - Mover para cá e aumentar o tamanho */}
             {formData.spotifyLink && isValidSpotifyUrl(formData.spotifyLink) && (
-              <section className="py-8 px-4">
-                <div className="max-w-2xl mx-auto"> {/* Aumentado para max-w-2xl */}
-                  <div className="bg-white/5 p-4 rounded-xl backdrop-blur-sm"> {/* Aumentado o padding */}
+              <section className="px-4 py-8">
+                <div className="mx-auto max-w-2xl">
+                  {' '}
+                  {/* Aumentado para max-w-2xl */}
+                  <div className="rounded-xl bg-white/5 p-4 backdrop-blur-sm">
+                    {' '}
+                    {/* Aumentado o padding */}
                     <SpotifyEmbed url={formData.spotifyLink} />
                   </div>
                 </div>
@@ -559,11 +582,11 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
             )}
 
             {/* Mensagem */}
-            <section className="py-8 px-4">
-              <div className="max-w-full mx-auto">
-                <div className="bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-lg p-4 rounded-xl">
-                  <MessageCircleHeart className="w-6 h-6 text-primary mb-2" />
-                  <p className="text-sm text-gray-200 break-words whitespace-pre-wrap">
+            <section className="px-4 py-8">
+              <div className="mx-auto max-w-full">
+                <div className="rounded-xl bg-gradient-to-r from-primary/20 to-primary/10 p-4 backdrop-blur-lg">
+                  <MessageCircleHeart className="mb-2 size-6 text-primary" />
+                  <p className="whitespace-pre-wrap break-words text-sm text-gray-200">
                     {formData.message || t('sample_message')}
                   </p>
                 </div>
@@ -572,13 +595,13 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
 
             {/* Galeria de Fotos */}
             {photoUrls.length > 0 && (
-              <section className="py-8 px-4">
+              <section className="px-4 py-8">
                 <div className="flex justify-center">
-                  <div className="w-48 h-48 rounded-md overflow-hidden">
+                  <div className="size-48 overflow-hidden rounded-md">
                     <img
                       src={photoUrls[currentPhotoIndex]}
                       alt=""
-                      className="w-full h-full object-cover"
+                      className="size-full object-cover"
                     />
                   </div>
                 </div>
@@ -587,11 +610,11 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
 
             {/* Alternativa visual quando o link não é válido mas existe */}
             {formData.spotifyLink && !isValidSpotifyUrl(formData.spotifyLink) && (
-              <section className="py-8 px-4">
-                <div className="max-w-xl mx-auto">
-                  <div className="bg-white/10 rounded-xl p-4 flex items-center gap-3">
+              <section className="px-4 py-8">
+                <div className="mx-auto max-w-xl">
+                  <div className="flex items-center gap-3 rounded-xl bg-white/10 p-4">
                     <Music className="text-primary" />
-                    <div className="text-sm truncate">{formData.spotifyLink}</div>
+                    <div className="truncate text-sm">{formData.spotifyLink}</div>
                   </div>
                 </div>
               </section>
@@ -606,7 +629,7 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedPhoto(null)}
-                className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
               >
                 <motion.img
                   initial={{ scale: 0.5 }}
@@ -614,7 +637,7 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
                   exit={{ scale: 0.5 }}
                   src={selectedPhoto}
                   alt=""
-                  className="max-w-full max-h-[90vh] object-contain rounded-lg"
+                  className="max-h-[90vh] max-w-full rounded-lg object-contain"
                 />
               </motion.div>
             )}
@@ -623,4 +646,4 @@ export const LivePreview = ({ formData }: { formData: FormData }) => {
       </div>
     </div>
   );
-}; 
+};
